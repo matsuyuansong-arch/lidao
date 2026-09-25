@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>第十一屆離島運動會｜選手須知</title>
+<meta name="description" content="金澎團本部選手專區：當天公告、緊急聯絡人、宣達事項、接駁站點。">
+<meta property="og:title" content="第十一屆離島運動會｜選手須知">
+<meta property="og:description" content="當天公告、緊急聯絡人、宣達事項、接駁站點。出門前打開看一次。">
+<meta property="og:type" content="website">
+<style>
+  :root{--paper:#fbf9f4;--navy:#001a3d;--blue:#003366;--warm:#f1ede4}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--paper);color:var(--navy);
+    font-family:"PingFang TC","Noto Sans TC","Helvetica Neue",Arial,sans-serif;
+    display:flex;align-items:center;justify-content:center;padding:24px;-webkit-text-size-adjust:100%}
+  .card{width:100%;max-width:420px;text-align:center}
+  .mark{font-size:13px;letter-spacing:.32em;text-indent:.32em;color:var(--blue);margin:0 0 28px;font-weight:600}
+  h1{font-size:21px;line-height:1.5;margin:0 0 14px;color:var(--blue);font-weight:600}
+  p{font-size:15px;line-height:1.85;margin:0 0 20px;color:#33445c}
+  a.btn{display:block;padding:15px 20px;background:var(--blue);color:var(--warm);text-decoration:none;font-size:16px;font-weight:600;letter-spacing:.04em}
+  a.btn:active{background:var(--navy)}
+  .fine{font-size:12.5px;line-height:1.8;color:#6b7a90;margin-top:22px}
+  .hide{display:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <p class="mark">第十一屆離島運動會</p>
+
+  <div id="going">
+    <h1>正在開啟選手須知</h1>
+    <p>如果畫面沒有自動跳轉，請點下面的按鈕。</p>
+    <a class="btn" id="go" href="#">開啟選手須知</a>
+  </div>
+
+  <div id="closed" class="hide">
+    <h1>本屆運動會已圓滿結束</h1>
+    <p>選手須知頁面已關閉。謝謝各位選手來到馬祖。</p>
+  </div>
+
+  <p class="fine">金澎團本部選手專區｜承辦：龍福旅行社</p>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   要改的只有下面這兩行。改完 commit + push，約一分鐘生效。
+   已經印出去的 QR Code 不用重做。
+   ══════════════════════════════════════════════════════════════ */
+
+// 選手須知網頁（GAS）的正式網址。重新部署時沿用同一個 Deployment ID，這裡就不用改。
+var TARGET_URL = 'https://script.google.com/macros/s/AKfycbysCGqHwtJ0eWtZgNrbLck7QmO5PudPeYeHmwrPsDMizA9Py4c36WhRQso4JmVoEi9g/exec';
+
+// 活動結束、要關閉頁面時改成 true。
+var CLOSED = false;
+
+/* ────────────────── 以下不用動 ────────────────── */
+(function () {
+  var show = function (id, on) { document.getElementById(id).className = on ? '' : 'hide'; };
+  if (CLOSED) { show('going', false); show('closed', true); return; }
+  document.getElementById('go').href = TARGET_URL;
+  // 網址帶 ?stay=1 時不跳轉，方便檢查這一頁
+  if (location.search.indexOf('stay=1') >= 0) return;
+  location.replace(TARGET_URL);
+})();
+</script>
+<noscript><p class="fine" style="text-align:center">請改用這個網址開啟：<br>
+<a href="https://script.google.com/macros/s/AKfycbysCGqHwtJ0eWtZgNrbLck7QmO5PudPeYeHmwrPsDMizA9Py4c36WhRQso4JmVoEi9g/exec">選手須知</a></p></noscript>
+</body>
+</html>
